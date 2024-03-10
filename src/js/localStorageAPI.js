@@ -1,6 +1,11 @@
+const LOCAL_STORAGE_KEY = 'tasks';
 function add(objData) {
-  const tasksArr = JSON.parse(localStorage.getItem('tasks')) || [];
+  const tasksArr = getAll();
   tasksArr.push(objData);
-  localStorage.setItem('tasks', JSON.stringify(tasksArr));
+  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(tasksArr));
 }
-export const localStorageAPI = { add };
+function getAll() {
+  return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
+}
+export const localStorageAPI = { add , getAll };
+
